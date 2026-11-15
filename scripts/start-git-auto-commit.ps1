@@ -30,3 +30,4 @@ if ($process -and $process.Id) {
 } else {
     Write-Host "ERROR: Failed to launch background process." -ForegroundColor Red
 }
+

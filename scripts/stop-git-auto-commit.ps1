@@ -17,3 +17,4 @@ if (Test-Path $pidFile) {
 } else {
     Write-Host "No active Git Auto-Commit PID file found." -ForegroundColor Yellow
 }
+

@@ -87,3 +87,4 @@ npm run git:commit-now
 ```
 
 The system will scan for modified files, stage safe files, generate the conventional commit message, commit, and print the updated status.
+
