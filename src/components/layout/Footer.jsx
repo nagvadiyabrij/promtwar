@@ -36,6 +36,7 @@ export default function Footer() {
               <li><Link to="/medications" className="hover:text-teal-400 transition">Medication Schedules & Refills</Link></li>
               <li><Link to="/appointments" className="hover:text-teal-400 transition">Appointments & Google Calendar</Link></li>
               <li><Link to="/adherence" className="hover:text-teal-400 transition">Adherence Streak Analytics</Link></li>
+              <li><Link to="/admin" className="hover:text-teal-400 transition text-teal-300 font-bold">🛡️ Master Admin Portal</Link></li>
             </ul>
           </div>
 

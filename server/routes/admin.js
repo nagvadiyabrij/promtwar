@@ -1,4 +1,6 @@
 import express from 'express';
+import crypto from 'node:crypto';
+import bcrypt from 'bcryptjs';
 import db from '../db.js';
 import { authenticateToken, requireRole } from '../middleware/auth.js';
 
@@ -64,6 +66,44 @@ router.get('/users', (req, res) => {
 
   const users = db.prepare(query).all(...params);
   return res.json({ success: true, users });
+});
+
+// Create new user directly from Admin Panel
+router.post('/users', (req, res) => {
+  const { name, email, password, role = 'caretaker', phone = '' } = req.body;
+  if (!name || !email || !password) {
+    return res.status(400).json({ success: false, error: 'Name, email, and password are required.' });
+  }
+
+  const existing = db.prepare('SELECT id FROM users WHERE email = ?').get(email);
+  if (existing) {
+    return res.status(409).json({ success: false, error: 'User with this email already exists.' });
+  }
+
+  const salt = bcrypt.genSaltSync(10);
+  const passwordHash = bcrypt.hashSync(password, salt);
+  const userId = `usr-${crypto.randomUUID().slice(0, 8)}`;
+
+  db.prepare(`
+    INSERT INTO users (id, name, email, password_hash, role, phone, status)
+    VALUES (?, ?, ?, ?, ?, ?, 'active')
+  `).run(userId, name, email, passwordHash, role, phone);
+
+  // Record audit log
+  try {
+    db.prepare(`
+      INSERT INTO activity_audit_logs (id, user_id, user_name, action, details)
+      VALUES (?, ?, ?, 'USER_CREATED', ?)
+    `).run(`log-${crypto.randomUUID().slice(0, 8)}`, req.user.id, req.user.name, `Admin created user ${name} (${role})`);
+  } catch (e) {
+    console.error('Audit log error:', e);
+  }
+
+  return res.status(201).json({
+    success: true,
+    message: `User ${name} successfully created.`,
+    user: { id: userId, name, email, role, phone, status: 'active' }
+  });
 });
 
 // 3. User Status Update (Activate / Suspend)

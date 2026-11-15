@@ -29,8 +29,8 @@ export default function Navbar() {
     { name: 'Medications', path: '/medications', icon: Pill, show: true },
     { name: 'Appointments', path: '/appointments', icon: Calendar, show: true },
     { name: 'Adherence', path: '/adherence', icon: Activity, show: true },
-    { name: 'Care Circle', path: '/care-circle', icon: Users, show: !!user },
-    { name: 'Admin', path: '/admin', icon: Shield, show: user?.role === 'admin' }
+    { name: 'Care Circle', path: '/care-circle', icon: Users, show: true },
+    { name: 'Admin Portal', path: '/admin', icon: Shield, show: true }
   ];
 
   return (

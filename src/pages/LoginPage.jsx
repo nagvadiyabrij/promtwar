@@ -69,9 +69,60 @@ export default function LoginPage() {
 
     if (res.success) {
       showToast('Login successful!', 'success');
-      navigate('/caregiver');
+      if (res.user?.role === 'admin') {
+        navigate('/admin');
+      } else if (res.user?.role === 'elderly') {
+        navigate('/elderly');
+      } else {
+        navigate('/caregiver');
+      }
     } else {
       showToast(res.error || 'Login failed.', 'error');
+    }
+  };
+
+  // Instant 1-Click Persona Access (No typing needed for Hackathon evaluators)
+  const quickDemoLogin = async (role) => {
+    if (role === 'elder') {
+      setPinLoading(true);
+      const res = await passcodeLogin('1234');
+      setPinLoading(false);
+      if (res.success) {
+        showToast('Instant Access: Eleanor Vance (Senior Mode)', 'success');
+        navigate('/elderly');
+      } else {
+        showToast(res.error || 'Failed to login with passcode', 'error');
+      }
+      return;
+    }
+
+    let demoEmail = 'admin@auracare.health';
+    let demoPass = 'admin123';
+    let target = '/admin';
+
+    if (role === 'caregiver') {
+      demoEmail = 'sarah.vance@auracare.health';
+      demoPass = 'care123';
+      target = '/caregiver';
+    } else if (role === 'family') {
+      demoEmail = 'david.vance@auracare.health';
+      demoPass = 'family123';
+      target = '/caregiver';
+    } else if (role === 'doctor') {
+      demoEmail = 'dr.chen@auracare.health';
+      demoPass = 'admin123';
+      target = '/caregiver';
+    }
+
+    setEmailLoading(true);
+    const res = await login(demoEmail, demoPass);
+    setEmailLoading(false);
+
+    if (res.success) {
+      showToast(`Welcome! Signed in as ${res.user?.name || role}`, 'success');
+      navigate(target);
+    } else {
+      showToast(res.error || 'Authentication error', 'error');
     }
   };
 
@@ -263,38 +314,61 @@ export default function LoginPage() {
         )}
 
         {/* Hackathon Judge Quick-Fill Presets */}
-        <div className="pt-4 border-t border-slate-200 space-y-2">
-          <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider text-center">
-            ⚡ Quick-Fill Persona for Evaluators:
+        <div className="pt-4 border-t border-slate-200 space-y-3">
+          <div className="flex items-center justify-between text-xs font-bold text-slate-500 uppercase tracking-wider">
+            <span className="flex items-center gap-1.5 text-teal-700">
+              <Sparkles className="w-3.5 h-3.5 text-teal-600" />
+              1-Click Demo Personas:
+            </span>
+            <span className="text-[10px] text-slate-400 font-normal">Click to sign in immediately</span>
           </div>
           <div className="grid grid-cols-2 gap-2 text-xs">
             <button
               type="button"
-              onClick={() => fillDemo('elder')}
-              className="p-2 rounded-lg bg-teal-50 hover:bg-teal-100 text-teal-800 font-semibold text-left border border-teal-200"
+              onClick={() => quickDemoLogin('elder')}
+              className="p-2.5 rounded-xl bg-teal-50 hover:bg-teal-100 text-teal-900 font-bold text-left border border-teal-200 shadow-xs transition hover:scale-[1.02] flex items-center justify-between"
             >
-              👵 Eleanor (PIN: 1234)
+              <div>
+                <p className="font-extrabold text-sm">👵 Eleanor (Senior)</p>
+                <p className="text-[10px] text-teal-700 font-medium">1-Touch PIN 1234</p>
+              </div>
+              <ArrowRight className="w-3.5 h-3.5 text-teal-600" />
             </button>
+
             <button
               type="button"
-              onClick={() => fillDemo('caregiver')}
-              className="p-2 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-800 font-semibold text-left border border-blue-200"
+              onClick={() => quickDemoLogin('caregiver')}
+              className="p-2.5 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-900 font-bold text-left border border-blue-200 shadow-xs transition hover:scale-[1.02] flex items-center justify-between"
             >
-              🩺 Sarah (Nurse)
+              <div>
+                <p className="font-extrabold text-sm">🩺 Sarah (Caregiver)</p>
+                <p className="text-[10px] text-blue-700 font-medium">Care Circle & Meds</p>
+              </div>
+              <ArrowRight className="w-3.5 h-3.5 text-blue-600" />
             </button>
+
             <button
               type="button"
-              onClick={() => fillDemo('family')}
-              className="p-2 rounded-lg bg-purple-50 hover:bg-purple-100 text-purple-800 font-semibold text-left border border-purple-200"
+              onClick={() => quickDemoLogin('admin')}
+              className="p-2.5 rounded-xl bg-purple-50 hover:bg-purple-100 text-purple-900 font-bold text-left border border-purple-200 shadow-xs transition hover:scale-[1.02] flex items-center justify-between"
             >
-              👨‍👩‍👧 David (Son)
+              <div>
+                <p className="font-extrabold text-sm">🛡️ Dr. Finch (Admin)</p>
+                <p className="text-[10px] text-purple-700 font-medium">RBAC, Logs, Engine</p>
+              </div>
+              <ArrowRight className="w-3.5 h-3.5 text-purple-600" />
             </button>
+
             <button
               type="button"
-              onClick={() => fillDemo('admin')}
-              className="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-left border border-slate-300"
+              onClick={() => quickDemoLogin('family')}
+              className="p-2.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 font-bold text-left border border-amber-200 shadow-xs transition hover:scale-[1.02] flex items-center justify-between"
             >
-              🛡️ Dr. Finch (Admin)
+              <div>
+                <p className="font-extrabold text-sm">👨‍👩‍👧 David (Family)</p>
+                <p className="text-[10px] text-amber-700 font-medium">Adherence & Vitals</p>
+              </div>
+              <ArrowRight className="w-3.5 h-3.5 text-amber-600" />
             </button>
           </div>
         </div>
