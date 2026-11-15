@@ -1,4 +1,4 @@
-# AuraCare Google Cloud Run Deployment Script (PowerShell)
+﻿# AuraCare Google Cloud Run Deployment Script (PowerShell)
 [CmdletBinding()]
 param (
     [string]$ProjectId = $env:GOOGLE_CLOUD_PROJECT,
@@ -15,7 +15,7 @@ Write-Host "==========================================================" -Foregro
 if (-not (Get-Command gcloud -ErrorAction SilentlyContinue)) {
     Write-Host "Google Cloud SDK (gcloud CLI) is not installed on this machine." -ForegroundColor Yellow
     Write-Host "Alternative Instant Deployment Options:" -ForegroundColor Cyan
-    Write-Host "1. One-Click Cloud Run Button: https://deploy.cloud.run/?git_repo=https://github.com/nagvadiyabrij/promntwar.git"
+    Write-Host "1. One-Click Cloud Run Button: https://deploy.cloud.run/?git_repo=https://github.com/nagvadiyabrij/promtwar.git"
     Write-Host "2. Google Cloud Shell (in browser): Run ./deploy-cloud-run.sh"
     exit 1
 }
