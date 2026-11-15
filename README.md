@@ -2,8 +2,8 @@
 
 > **Google for Developers | PromptWars x Catalyst Hackathon Edition**  
 > *Category:* Elderly Care & Medication Management Platform  
-> *🚀 Live Deployed Public URL:* **https://8bd09a1675ff61.app.lhr.life**  
-> *🏥 Live Health API Probe:* **https://8bd09a1675ff61.app.lhr.life/api/health**  
+> *🚀 Live Deployed Public URL:* **https://7edbae14b004a7.app.lhr.life**  
+> *🏥 Live Health API Probe:* **https://7edbae14b004a7.app.lhr.life/api/health**  
 > *GitHub Repository:* https://github.com/nagvadiyabrij/promtwar  
 > *Stack:* React (Vite), Tailwind CSS, Node.js / Express, SQLite / PostgreSQL, Google Gemini AI, Nodemailer, Google Cloud Run
 
@@ -13,8 +13,8 @@
 
 ## 🌐 Live Public Deployed Application
 
-- **Live Deployed Link (Public HTTPS):** [https://8bd09a1675ff61.app.lhr.life](https://8bd09a1675ff61.app.lhr.life)
-- **Health Check Status:** [https://8bd09a1675ff61.app.lhr.life/api/health](https://8bd09a1675ff61.app.lhr.life/api/health)
+- **Live Deployed Link (Public HTTPS):** [https://7edbae14b004a7.app.lhr.life](https://7edbae14b004a7.app.lhr.life)
+- **Health Check Status:** [https://7edbae14b004a7.app.lhr.life/api/health](https://7edbae14b004a7.app.lhr.life/api/health)
 - **Deployment Type:** Cloud Native Web Application with TLS / HTTPS Termination
 - **Public Access:** Fully open worldwide — accessible on mobile, tablet, and desktop without VPN or credentials.
 
