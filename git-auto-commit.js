@@ -319,7 +319,7 @@ export async function executeAutoCommitCycle() {
 
   for (const line of lines) {
     const statusPart = line.slice(0, 2);
-    const rawFile = line.slice(3).trim();
+    const rawFile = line.slice(2).trim();
     // Handle renamed files: "old -> new"
     const file = rawFile.includes(' -> ') ? rawFile.split(' -> ')[1] : rawFile;
 

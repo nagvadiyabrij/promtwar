@@ -1,6 +1,33 @@
-node_modules
+# Dependencies
+node_modules/
+
+# Local Database & data
 data/*.sqlite*
-dist
+data/*.db*
+
+# Build artifacts
+dist/
+build/
+
+# Environment and sensitive keys
 .env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.cert
+id_rsa*
+credentials.json
+
+# Logs and automation tracking
+logs/
+*.log
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.git-auto-commit-state.json
+.git-auto-commit.pid
+
+# OS generated files
 .DS_Store
+Thumbs.db
