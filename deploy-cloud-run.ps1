@@ -1,4 +1,4 @@
-﻿# AuraCare Google Cloud Run Deployment Script (PowerShell)
+# AuraCare Google Cloud Run Deployment Script (PowerShell)
 [CmdletBinding()]
 param (
     [string]$ProjectId = $env:GOOGLE_CLOUD_PROJECT,
