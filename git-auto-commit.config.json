@@ -1,0 +1,27 @@
+{
+  "intervalMinutes": 10,
+  "targetCommitsPerDay": 40,
+  "remote": "origin",
+  "branch": "auto",
+  "maxRetries": 3,
+  "retryDelaySeconds": 5,
+  "logFile": "logs/git-auto-commit.log",
+  "stateFile": ".git-auto-commit-state.json",
+  "pidFile": ".git-auto-commit.pid",
+  "ignorePatterns": [
+    "^\\.env",
+    "\\.env\\.",
+    "node_modules",
+    "data/.*\\.sqlite",
+    "data/.*\\.db",
+    "dist/",
+    "build/",
+    "logs/",
+    "\\.git/",
+    "\\.git-auto-commit",
+    "\\.pem$",
+    "\\.key$",
+    "credentials",
+    "id_rsa"
+  ]
+}
