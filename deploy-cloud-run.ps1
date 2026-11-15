@@ -1,4 +1,4 @@
-﻿# AuraCare Google Cloud Run Deployment Script (PowerShell)
+# AuraCare Google Cloud Run Deployment Script (PowerShell)
 [CmdletBinding()]
 param (
     [string]$ProjectId = $env:GOOGLE_CLOUD_PROJECT,
@@ -60,3 +60,4 @@ Write-Host "🎉 DEPLOYMENT SUCCESSFUL!" -ForegroundColor Green
 Write-Host "Public Website URL: $serviceUrl" -ForegroundColor Cyan
 Write-Host "Health Check:       $serviceUrl/api/health" -ForegroundColor Cyan
 Write-Host "==========================================================" -ForegroundColor Green
+

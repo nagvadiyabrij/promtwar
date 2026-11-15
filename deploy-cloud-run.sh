@@ -51,3 +51,4 @@ echo "🎉 DEPLOYMENT SUCCESSFUL!"
 echo "Public Website URL: $SERVICE_URL"
 echo "Health Check:       $SERVICE_URL/api/health"
 echo "=========================================================="
+
