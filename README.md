@@ -2,7 +2,10 @@
 
 > **Google for Developers | PromptWars x Catalyst Hackathon Edition**  
 > *Category:* Elderly Care & Medication Management Platform  
+> *GitHub Repository:* https://github.com/nagvadiyabrij/promntwar  
 > *Stack:* React (Vite), Tailwind CSS, Node.js / Express, SQLite / PostgreSQL, Google Gemini AI, Nodemailer, Google Cloud Run
+
+[![Deploy to Cloud Run](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run/?git_repo=https://github.com/nagvadiyabrij/promntwar.git)
 
 ---
 
